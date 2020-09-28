@@ -1,0 +1,22 @@
+{
+    "buildOnSave": false,
+    "compileOnSave": false,
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es2015",
+      "moduleResolution": "node",
+      "experimentalDecorators": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "pretty": true,
+      "noEmitOnError": true,
+      "noImplicitAny": false,
+      "sourceMap": true,
+      "inlineSourceMap": false,
+      "inlineSources": true,
+      "lib": ["es2018"],
+      "types": ["node"]
+    },
+    "exclude": ["dist", "integration"]
+  }
+  
