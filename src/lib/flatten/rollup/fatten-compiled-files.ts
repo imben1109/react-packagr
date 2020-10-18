@@ -14,10 +14,10 @@ export type Format = 'es' | 'umd';
 function getDestFolderPath(userPackage: UserPackage,format: Format): string {
     if (userPackage){
         if (format == 'es'){
-            return path.join(userPackage.destFlattenCompiledFolderPath, userPackage.moduleId + '.js');
+            return path.join(userPackage.basePath, userPackage.dest, 'fesm2015', userPackage.moduleId + '.js');
         }
         if (format == 'umd'){
-            return path.join(userPackage.destUmdFolderPath,userPackage.moduleId + '.js');
+            return path.join(userPackage.basePath, userPackage.dest, 'umd', userPackage.moduleId + '.js');
         }
     }
     return null

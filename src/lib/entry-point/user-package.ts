@@ -34,14 +34,6 @@ export class UserPackage {
         return path.join(this.basePath, this.dest, 'esm2015');
     }
 
-    public get destFlattenCompiledFolderPath(): string {
-        return path.join(this.basePath, this.dest, 'fesm2015');
-    }
-
-    public get destUmdFolderPath(): string {
-        return path.join(this.basePath, this.dest, 'umd');
-    }
-
     public get compiledMainFilePath(): string {
         return path.join(this.destCompiledFolderPath, 'public_api.js');
     }
