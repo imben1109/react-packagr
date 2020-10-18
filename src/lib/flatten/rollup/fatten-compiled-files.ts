@@ -7,11 +7,23 @@ import * as commonJs from '@rollup/plugin-commonjs';
 import * as postcss from 'rollup-plugin-postcss';
 import * as image from '@rollup/plugin-image';
 import { ExternalModuleStrategy } from './external-module-strategy';
-
+import * as path from 'path';
 
 export type Format = 'es' | 'umd';
 
-export async function fattenCompiledFiles(userPackage: UserPackage, destFolderPath: string, format: Format): Promise<void> {
+function getDestFolderPath(userPackage: UserPackage,format: Format): string {
+    if (userPackage){
+        if (format == 'es'){
+            return path.join(userPackage.destFlattenCompiledFolderPath, userPackage.moduleId + '.js');
+        }
+        if (format == 'umd'){
+            return path.join(userPackage.destUmdFolderPath,userPackage.moduleId + '.js');
+        }
+    }
+    return null
+}
+
+export async function fattenCompiledFiles(userPackage: UserPackage, format: Format): Promise<void> {
     
     const externalModuleStrategy: ExternalModuleStrategy = new ExternalModuleStrategy(format, userPackage.dependencyList);
     
@@ -54,11 +66,13 @@ export async function fattenCompiledFiles(userPackage: UserPackage, destFolderPa
     // rollup output
     const outputOption: OutputOptions = {
         name: userPackage.moduleId,
-        file: destFolderPath + userPackage.moduleId + '.js',
+        file: getDestFolderPath(userPackage, format),
         format: format,
         sourcemap: true 
     };
+    console.log(`starting to write bundled file: ${outputOption.file}`)
     await bundle.write(outputOption);
 
     return Promise.resolve();
 }
+

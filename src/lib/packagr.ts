@@ -30,10 +30,10 @@ export class Packagr {
             console.log("Completed compile source files to: " + compiledOutputFolder);
         
             console.info('Bundling to FESM2015');
-            await fattenCompiledFiles(userPackage, 'dist/fesm2015/', 'es');
+            await fattenCompiledFiles(userPackage, 'es');
 
             console.log('Bundling to UMD');
-            await fattenCompiledFiles(userPackage, 'dist/umd/', 'umd');
+            await fattenCompiledFiles(userPackage, 'umd');
         });
     }
 
